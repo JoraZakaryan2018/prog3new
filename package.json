@@ -14,9 +14,14 @@
   "author": "JoraZakaryan2018",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0"
   },
   "engines": {
     "node": "4.7.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/JoraZakaryan2018/prog3/issues"
+  },
+  "homepage": "https://github.com/JoraZakaryan2018/prog3#readme"
 }

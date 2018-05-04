@@ -23,7 +23,7 @@ module.exports = class Grass extends LivingCreature {
         console.log("rd");
          this.stanalNorKordinatner();
          this.multiply++;
-         var norVandak = Math.floor(Math.random() *this.yntrelVandak(0));
+         var norVandak = random(this.yntrelVandak(0));
  
          if (norVandak && this.multiply >= 1) {
              var norXot = new Grass(norVandak[0], norVandak[1]);

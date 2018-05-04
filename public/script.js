@@ -1,48 +1,41 @@
-function setup() {
-    frameRate(5);
-    createCanvas(matrix[0].length * side, matrix.length * side);
-    background('#acacac');
-   
-}
-function draw() {
+var socket = io.connect('http://localhost:3000');
+var side = 10;
 
+socket.on('matrix', function (matrix) {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-
             if (matrix[y][x] == 1) {
-                        fill("green");
-                        rect(x * side, y * side, side, side);     
-            }
-            else if (matrix[y][x] == 0) {
-                fill("#acacac");
-                rect(x * side, y * side, side, side);
+                var xot = new Grass(x, y);
+                grassArr.push(xot);
             }
             else if (matrix[y][x] == 2) {
-                fill("yellow");
-                rect(x * side, y * side, side, side);
+                var xot = new Xotaker(x, y);
+                xotakerArr.push(xot);
             }
             else if (matrix[y][x] == 3) {
-                fill("red");
-                rect(x * side, y * side, side, side);
+                var xot = new Gishatich(x, y);
+                gishatichArr.push(xot);
             }
-
             else if (matrix[y][x] == 4) {
-                fill("blue");
-                rect(x * side, y * side, side, side);
+                var xot = new Amenaker(x, y);
+                amenakerArr.push(xot);
             }
             else if (matrix[y][x] == 5) {
-                fill("black");
-                rect(x * side, y * side, side, side);
+                var xot = new KerparS(x, y);
+                kerparsArr.push(xot);
             }
             else if (matrix[y][x] == 6) {
-                fill("purple");
-                rect(x * side, y * side, side, side);
+                var hiv = new Hivand(x, y);
+                hivandArr.push(hiv);
             }
-            else if (matrix[y][x] == 7) {
-                 fill("blue");
-                 rect(x * side, y * side, side, side);
-            }
+
         }
     }
-    
+});
+function setup() {
+    frameRate(5);
+    createCanvas(400, 400);
+    background('#acacac');
 }
+
+
