@@ -1,10 +1,14 @@
+//import { Socket } from "dgram";
+
 var LivingCreature = require("./class.parent.js");
 
 module.exports = class Xotaker extends LivingCreature {
-    constructor(x, y) {
+    constructor(x, y, ser) {
         super(x, y);
         this.energy = 5;
         this.mahxot = 0;
+        this.ser = (ser == 0 ? "txa" : "axjik");
+        console.log(this.ser);
     }
     stanalNorKordinatner() {
         this.directions = [
@@ -24,8 +28,8 @@ module.exports = class Xotaker extends LivingCreature {
     }
 
     sharjvel() {
-        
-        var norVandak2 = random(this.yntrelVandak(0));
+
+        var norVandak2 = this.randy(this.yntrelVandak(0));
         if (norVandak2) {
             matrix[this.y][this.x] = 0;
             this.y = norVandak2[1];
@@ -38,7 +42,7 @@ module.exports = class Xotaker extends LivingCreature {
 
     utel() {
         this.stanalNorKordinatner();
-        var norVandak1 = random(this.yntrelVandak(1));
+        var norVandak1 = this.randy(this.yntrelVandak(1));
 
         if (norVandak1) {
             matrix[this.y][this.x] = 0;
@@ -49,7 +53,6 @@ module.exports = class Xotaker extends LivingCreature {
             for (var i in grassArr) {
                 if (norVandak1[1] == grassArr[i].y && norVandak1[0] == grassArr[i].x)
                     grassArr.splice(i, 1);
-
             }
             this.energy = 5;
             this.mahxot++;
@@ -59,18 +62,46 @@ module.exports = class Xotaker extends LivingCreature {
             this.sharjvel();
         }
     }
-
+    anhetanal() {
+        matrix[this.y][this.x] = 2;
+    }
     bazmanal() {
-
+            
+           //console.log(this.ser);
+            if (this.ser == "txa") {
+                this.stanalNorKordinatner();
+                var norvandak = this.randy(this.yntrelVandak(2.5));
+                console.log("aaaa");
+              console.log(norvandak);
+                if (norvandak) {
+                    var norVandak1 = this.randy(this.yntrelVandak(1));
+                    console.log(norVandak1);
+                    
+                    if (norVandak1) {
+                        var r = (Math.round(Math.random()) / 2);
+                        matrix[norVandak1[1]][norVandak1[0]] =r+2 ;
+                        var norXotaker1 = new Xotaker(norVandak1[0], norVandak1[1],r);
+                        xotakerArr.push(norXotaker1);
+                        xotakerArrtiv.push(norXotaker1);
+                        console.log("bazmacav");
+                        this.mahxot = 0; 
+                         
+                    }
+                }
+         }
+    }
+    bazmanal_2() {
         this.stanalNorKordinatner();
 
-        var norVandak1 = random(this.yntrelVandak(0));
+        var norVandak1 = this.randy(this.yntrelVandak(1));
 
-        if (norVandak1 && this.mahxot >= 5) {
+        if (norVandak1 && this.mahxot >= 3) {
             var norXotaker1 = new Xotaker(norVandak1[0], norVandak1[1]);
             xotakerArr.push(norXotaker1);
+            xotakerArrtiv.push(norXotaker1);
             matrix[norVandak1[1]][norVandak1[0]] = 2;
             this.mahxot = 0;
+            
         }
     }
     mahanal() {
@@ -79,7 +110,7 @@ module.exports = class Xotaker extends LivingCreature {
             if (xotakerArr[i].energy <= 0) {
                 matrix[this.y][this.x] = 0;
                 xotakerArr.splice(i, 1);
-                
+
             }
         }
     }

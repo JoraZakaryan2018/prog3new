@@ -1,10 +1,12 @@
 var LivingCreature = require("./class.parent.js");
 
 module.exports=class KerparS extends LivingCreature {
-    constructor(x, y, energy) {
+    constructor(x, y, energy,ser) {
         super(x, y);
         this.multiply = 0;
         this.energy = energy;
+        this.pedik;
+        this.ser = (ser == 0 ? "txa" : "axjik");
     }
     stanalNorKordinatner() {
         this.directions = [
@@ -23,11 +25,11 @@ module.exports=class KerparS extends LivingCreature {
         return super.yntrelVandak(ch);
     }
     sharjvel() {
-
+        
         this.multiply++;
         this.energy++;
-        var norVandak2 = random(this.yntrelVandak(0));
-        var norVandak3 = random(this.yntrelVandak(1));
+        var norVandak2 = this.randy(this.yntrelVandak(0));
+        var norVandak3 = this.randy(this.yntrelVandak(1));
 
         if (norVandak2 || norVandak3) {
             if (norVandak2) {
@@ -45,15 +47,29 @@ module.exports=class KerparS extends LivingCreature {
         }
     }
     bazmanal() {
+        // if (this.ser = "txa") {
+        //     var norvandak = this.randy(this.yntrelVandak(5.5));
+        //     if (norvandak) {
+        //         var norVandak1 = this.randy(this.yntrelVandak(0));
+
+        //         if (norVandak1) {
+        //             var nork= new KerparS(norVandak1[0], norVandak1[1]);
+        //            kerparsArr.push(nork);
+        //            kerparsArrtiv.push(nork);
+        //             matrix[norVandak1[1]][norVandak1[0]] = (Math.round(Math.random()) / 2) + 5;
+        //         }
+        //     }
+        // }
         this.stanalNorKordinatner();
 
-        var norVandak1 = random(this.yntrelVandak(0));
-        var norVandak2 = random(this.yntrelVandak(1));
-        var norVandak3 = random(this.yntrelVandak(1));
+        var norVandak1 = this.randy(this.yntrelVandak(0));
+        var norVandak2 = this.randy(this.yntrelVandak(1));
+        
 
         if (norVandak1) {
             var norXotaker1 = new Grass(norVandak1[0], norVandak1[1]);
             grassArr.push(norXotaker1);
+            grassArrtiv.push(norXotaker1);
             matrix[norVandak1[1]][norVandak1[0]] = 1;
 
         }
@@ -61,20 +77,45 @@ module.exports=class KerparS extends LivingCreature {
         if (norVandak2) {
             var norXotaker1 = new Xotaker(norVandak2[0], norVandak2[1]);
             xotakerArr.push(norXotaker1);
-            matrix[norVandak2[1]][norVandak2[0]] = 2;
-        }
+            xotakerArrtiv.push(norXotaker1);
+            matrix[norVandak2[1]][norVandak2[0]] =  2; 
 
-        if (norVandak3) {
-            if (this.multiply >= 5) {
-                var norXotaker1 = new Gishatich(norVandak3[0], norVandak3[1]);
+             if (this.multiply >= 5) {
+                var norXotaker1 = new Gishatich(norVandak2[0], norVandak2[1]);
 
                 gishatichArr.push(norXotaker1);
-                matrix[norVandak3[1]][norVandak3[0]] = 3;
+                gishatichArrtiv.push(norXotaker1);
+                matrix[norVandak2[1]][norVandak2[0]] = 3;
                 this.multiply = 0;
+              //   matrix[norVandak2[1]][norVandak2[0]] = (Math.round(Math.random()) / 2) + 3; 
             }
         }
     }
+    bazmanaldzmer() {
+        this.stanalNorKordinatner();
 
+        var norVandak1 = this.randy(this.yntrelVandak(0));
+        var norVandak2 = this.randy(this.yntrelVandak(1));
+        
+        if (norVandak1) {
+            var norXotaker1 = new Grass(norVandak1[0], norVandak1[1]);
+            grassArr.push(norXotaker1);
+            grassArrtiv.push(norXotaker1);
+            matrix[norVandak1[1]][norVandak1[0]] = 1;
+        }
+        if (norVandak2) {
+             if (this.multiply >= 5) {
+                var norXotaker1 = new Gishatich(norVandak2[0], norVandak2[1]);
+
+                gishatichArr.push(norXotaker1);
+                gishatichArrtiv.push(norXotaker1);
+                matrix[norVandak2[1]][norVandak2[0]] = 3;
+                this.multiply = 0;
+             
+            }
+        }
+    }
+   
 
 }
 

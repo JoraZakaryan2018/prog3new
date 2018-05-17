@@ -1,11 +1,12 @@
 var LivingCreature = require("./class.parent.js");
 
 module.exports=class Amenaker extends LivingCreature {
-    constructor(x, y, energy) {
+    constructor(x, y, energy,ser) {
         super(x, y);
+        this.ser = (ser == 0 ? "txa" : "axjik");
     }
     stanalNorKordinatner() {
-        this.directions1 = [
+        this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
             [this.x + 1, this.y - 1],
@@ -33,15 +34,13 @@ module.exports=class Amenaker extends LivingCreature {
         ];
     }
     yntrelVandak(ch) {
-
         this.stanalNorKordinatner();
         return super.yntrelVandak(ch);
     }
     sharjvel() {
         this.stanalNorKordinatner();
-        var norVandak2 = random(this.yntrelVandak(0));
-        var norVandak1 = random(this.yntrelVandak(1));
-
+        var norVandak2 = this.randy(this.yntrelVandak(0));
+        var norVandak1 = this.randy(this.yntrelVandak(1));
         if (norVandak2) {
             matrix[this.y][this.x] = 0;
             this.y = norVandak2[1];
@@ -53,16 +52,14 @@ module.exports=class Amenaker extends LivingCreature {
             this.x = norVandak1[0];
             matrix[this.y][this.x] = 4;
         }
-
     }
-
     utel() {
         this.stanalNorKordinatner();
-        var norVandak2 = random(this.yntrelVandak(3));
-        var norVandak1 = random(this.yntrelVandak(2));
+        var norVandak2 = this.randy(this.yntrelVandak(3));
+        var norVandak1 = this.randy(this.yntrelVandak(2));
         // var norVandak2 = random(this.yntrelVandak(0));
-        var norVandak3 = random(this.yntrelVandak(1));
-        var norVandak5 = random(this.yntrelVandak(5));
+        var norVandak3 = this.randy(this.yntrelVandak(1));
+        var norVandak5 = this.randy(this.yntrelVandak(5));
 
         if (norVandak5) {
             matrix[this.y][this.x] = 0;
@@ -117,13 +114,36 @@ module.exports=class Amenaker extends LivingCreature {
             this.sharjvel();
         }
     }
+    bazmanal() {
+        
+                this.stanalNorKordinatner();
+                if (this.ser = "txa") {
+                    var norvandak = this.randy(this.yntrelVandak(4.5));
+                    if (norvandak) {
+                        var norVandak1 = this.randy(this.yntrelVandak(0));
+        
+                        if (norVandak1) {
+                            var noram = new Amenaker(norVandak1[0], norVandak1[1]);
+                            amenakerArr.push(noram);
+                           amenakerArrtiv.push(noram);
+                            matrix[norVandak1[1]][norVandak1[0]] = (Math.round(Math.random()) / 2)+4;
+                        }
+                    }
+                }
+            }
     mahanal() {
-        if (grassArr.length == 0 && xotakerArr.length == 0 && gishatichArr.length == 0) {
+        if (xotakerArr.length == 0 && gishatichArr.length == 0 && kerparsArr == 0 && superkArr ==0){
             for (var i in amenakerArr) {
                 matrix[amenakerArr[i].y][amenakerArr[i].x] = 0;
                 amenakerArr.splice(i, 1);
             }
         }
+    }
+    mahanalamar(){
+        var rand = Math.floor(Math.random() * amenakerArr.length);
+        
+        matrix[amenakerArr[rand].y][amenakerArr[rand].x] = 0;
+        amenakerArr.splice(rand, 1);
     }
 }
 

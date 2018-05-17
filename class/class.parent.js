@@ -18,4 +18,11 @@ module.exports = class LivingCreature {
         }
         return found;
     }
+    randy(rand){
+        if(rand.length>0){
+            var v =rand[Math.floor((Math.random() * rand.length))];
+            return v;
+        }
+        return false;
+    }
 }
