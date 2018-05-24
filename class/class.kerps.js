@@ -1,12 +1,10 @@
 var LivingCreature = require("./class.parent.js");
 
 module.exports=class KerparS extends LivingCreature {
-    constructor(x, y, energy,ser) {
+    constructor(x, y, energy) {
         super(x, y);
         this.multiply = 0;
         this.energy = energy;
-        this.pedik;
-        this.ser = (ser == 0 ? "txa" : "axjik");
     }
     stanalNorKordinatner() {
         this.directions = [
@@ -47,19 +45,6 @@ module.exports=class KerparS extends LivingCreature {
         }
     }
     bazmanal() {
-        // if (this.ser = "txa") {
-        //     var norvandak = this.randy(this.yntrelVandak(5.5));
-        //     if (norvandak) {
-        //         var norVandak1 = this.randy(this.yntrelVandak(0));
-
-        //         if (norVandak1) {
-        //             var nork= new KerparS(norVandak1[0], norVandak1[1]);
-        //            kerparsArr.push(nork);
-        //            kerparsArrtiv.push(nork);
-        //             matrix[norVandak1[1]][norVandak1[0]] = (Math.round(Math.random()) / 2) + 5;
-        //         }
-        //     }
-        // }
         this.stanalNorKordinatner();
 
         var norVandak1 = this.randy(this.yntrelVandak(0));
@@ -78,14 +63,14 @@ module.exports=class KerparS extends LivingCreature {
             var norXotaker1 = new Xotaker(norVandak2[0], norVandak2[1]);
             xotakerArr.push(norXotaker1);
             xotakerArrtiv.push(norXotaker1);
-            matrix[norVandak2[1]][norVandak2[0]] =  2; 
+            matrix[norVandak2[1]][norVandak2[0]] =  (Math.round(Math.random()) / 2) + 2; 
 
              if (this.multiply >= 5) {
                 var norXotaker1 = new Gishatich(norVandak2[0], norVandak2[1]);
 
                 gishatichArr.push(norXotaker1);
                 gishatichArrtiv.push(norXotaker1);
-                matrix[norVandak2[1]][norVandak2[0]] = 3;
+                matrix[norVandak2[1]][norVandak2[0]] = (Math.round(Math.random()) / 2) + 3;
                 this.multiply = 0;
               //   matrix[norVandak2[1]][norVandak2[0]] = (Math.round(Math.random()) / 2) + 3; 
             }
@@ -109,7 +94,7 @@ module.exports=class KerparS extends LivingCreature {
 
                 gishatichArr.push(norXotaker1);
                 gishatichArrtiv.push(norXotaker1);
-                matrix[norVandak2[1]][norVandak2[0]] = 3;
+                matrix[norVandak2[1]][norVandak2[0]] = (Math.round(Math.random()) / 2) + 3; 
                 this.multiply = 0;
              
             }

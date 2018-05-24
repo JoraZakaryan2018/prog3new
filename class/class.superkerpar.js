@@ -155,10 +155,4 @@ module.exports = class SuperK extends LivingCreature {
             }
         }
     }
-    // mahanal(){
-    //     for(var i in superkArr){
-    //         matrix[this.y][this.x] = 0;
-    //         superkArr.splice(i,1);
-    //     }
-    // }
 }

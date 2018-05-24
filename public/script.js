@@ -21,6 +21,11 @@ socket.on('matrix', function (matrix, exanak) {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
+            if(exanak == "garun"){
+                var text = document.createElement("H1");
+                text.setAttribute("Garun");
+                document.body.appendChild(text);
+            }
             if (matrix[y][x] == 1) {
                 fill("green");
                 if (exanak == "garun") {
@@ -41,15 +46,15 @@ socket.on('matrix', function (matrix, exanak) {
                 fill("#acacac");
                 rect(x * side, y * side, side, side);
             }
-            else if (matrix[y][x] == 2) {
+            else if (matrix[y][x] == 2 || matrix[y][x] == 2.5) {
                 fill("yellow");
                 rect(x * side, y * side, side, side);
             }
-            else if (matrix[y][x] == 3) {
+            else if (matrix[y][x] == 3 || matrix[y][x] == 3.5) {
                 fill("red");
                 rect(x * side, y * side, side, side);
             }
-            else if (matrix[y][x] == 4) {
+            else if (matrix[y][x] == 4 || matrix[y][x] == 4.5) {
                 fill("black");
                 rect(x * side, y * side, side, side);
             }
