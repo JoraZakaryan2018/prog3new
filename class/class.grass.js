@@ -18,7 +18,7 @@ module.exports = class Grass extends LivingCreature {
         ];
     }
     bazmanal() {
-       // console.log("rd");
+    //    console.log("Bazmacav");
        
          this.stanalNorKordinatner();
          this.multiply++;

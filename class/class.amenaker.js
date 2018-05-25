@@ -142,7 +142,7 @@ module.exports = class Amenaker extends LivingCreature {
             for (var i in grassArr) {
                 if (norVandak3[1] == grassArr[i].y && norVandak3[0] == grassArr[i].x) {
                     grassArr.splice(i, 1);
-                   // console.log("kerav");
+                  
                 }
             }
         }
@@ -152,7 +152,7 @@ module.exports = class Amenaker extends LivingCreature {
     }
     bazmanal() {
         this.stanalNorKordinatner();
-      //  console.log(grassArr.length);
+    
         if (this.ser == "txa") {
             var norvandak = this.randy(this.yntrelVandak(4.5));
             if (norvandak) {
@@ -171,7 +171,7 @@ module.exports = class Amenaker extends LivingCreature {
                             grassArr.splice(i, 1);
                         }
                     }
-                    console.log("bazmacam amenaker");
+                   // console.log("bazmacav amenaker");
                     this.mahxot =0;
                 }
             }

@@ -28,13 +28,13 @@ server.listen(process.env.PORT || 3000, function () {
 
 matrix = [
     // [1, 1, 0, 0],
-    // [2, 2, 0, 0],
+    // [2, 2, 1, 0],
     // [0, 0, 0, 0],
-    // [0, 0, 0, 0],
-    // [0, 0, 0, 0],
-    // [0, 0, 0, 0],
-    // [0, 0, 0, 0],
-    // [0, 0, 0, 0],
+    // [0, 0, 1, 0],
+    // [0, 0, 1, 0],
+    // [0, 0, 1, 0],
+    // [0, 1, 0, 0],
+    // [0, 0, 1, 0],
     // [0, 0, 0, 0],
     // [0, 0, 0, 0],
 ];
@@ -102,7 +102,7 @@ for (var y = 0; y < matrix.length; y++) {
             xotakerArr.push(xot);
             xotakerArrtiv.push(xot);
             matrix[y][x] += r;
-            // console.log(r);
+          
 
         }
         else if (matrix[y][x] == 3) {
@@ -111,7 +111,7 @@ for (var y = 0; y < matrix.length; y++) {
             gishatichArr.push(xot);
             gishatichArrtiv.push(xot);
             matrix[y][x] += r;
-            // console.log("gishatich: " + matrix[y][x]);
+         
         }
         else if (matrix[y][x] == 4) {
             var r = (Math.round(Math.random()) / 2);
@@ -121,11 +121,11 @@ for (var y = 0; y < matrix.length; y++) {
             matrix[y][x] += r;
         }
         else if (matrix[y][x] == 5) {
-            // var r = (Math.round(Math.random()) / 2);
+        
             var xot = new KerparS(x, y);
             kerparsArr.push(xot);
             kerparsArrtiv.push(xot);
-            // matrix[y][x] += r;
+            
         }
         else if (matrix[y][x] == 6) {
             var xot = new SuperK(x, y);
@@ -138,26 +138,32 @@ for (var y = 0; y < matrix.length; y++) {
 io.on('connection', function (socket) {
 
     socket.on('xotaker', function () {
-        if (exanak != "dzmer") {
+        if (exanak != "dzmer" && grassArr.length != 0) {
+            // debugMatrix();
             var random = Math.floor(Math.random() * grassArr.length);
+           // console.log(grassArr[random].directions);
+            if (grassArr[random]) {
+                var Y = grassArr[random].y;
+                var X = grassArr[random].x;
+                var r = (Math.round(Math.random()) / 2);
 
-            var Y = grassArr[random].y;
-            var X = grassArr[random].x;
-            var r = (Math.round(Math.random()) / 2);
-
-            matrix[grassArr[random].y][grassArr[random].x] = 0;
-            grassArr.splice(random, 1);
+                matrix[grassArr[random].y][grassArr[random].x] = 0;
+                grassArr.splice(random, 1);
 
 
-            var newXotaker = new Xotaker(X, Y, r);
-            xotakerArr.push(newXotaker);
-            xotakerArrtiv.push(newXotaker);
+                var newXotaker = new Xotaker(X, Y, r);
+                xotakerArr.push(newXotaker);
+                xotakerArrtiv.push(newXotaker);
+                // debugMatrix();Î
+            }
+
         }
     })
 
     socket.on('gish', function () {
         var random = Math.floor(Math.random() * grassArr.length);
 
+        if (grassArr[random]) {
         var Y = grassArr[random].y;
         var X = grassArr[random].x;
         var r = (Math.round(Math.random()) / 2);
@@ -169,11 +175,12 @@ io.on('connection', function (socket) {
         var newGishatich = new Gishatich(X, Y, r);
         gishatichArr.push(newGishatich);
         gishatichArrtiv.push(newGishatich);
-
+        }
     })
     socket.on('kerps', function () {
         var random = Math.floor(Math.random() * grassArr.length);
 
+        if (grassArr[random]) {
         var Y = grassArr[random].y;
         var X = grassArr[random].x;
 
@@ -184,10 +191,12 @@ io.on('connection', function (socket) {
         var newkerpars = new KerparS(X, Y);
         kerparsArr.push(newkerpars);
         kerparsArrtiv.push(newkerpars);
+        }
     })
     socket.on('amenaker', function () {
         var random = Math.floor(Math.random() * grassArr.length);
 
+        if (grassArr[random]) {
         var Y = grassArr[random].y;
         var X = grassArr[random].x;
         var r = (Math.round(Math.random()) / 2);
@@ -199,16 +208,12 @@ io.on('connection', function (socket) {
         var newamenaker = new Amenaker(X, Y, r);
         amenakerArr.push(newamenaker);
         amenakerArrtiv.push(newamenaker);
-
+        }
     })
 
 });
 
-
-// console.log("asecc");
-
-
-var intervalId = setInterval(function () { drawS() }, 1000);
+var intervalId = setInterval(drawS, 1000);
 function drawS() {
     function exanak_f() {
         timeEx++;
@@ -232,7 +237,9 @@ function drawS() {
             exanak = "garun";
             for (var i = 0; i <= 5; i++) {
                 var random = Math.floor(Math.random() * grassArr.length);
+                if(grassArr[random]){
 
+                
                 var Y = grassArr[random].y;
                 var X = grassArr[random].x;
 
@@ -242,6 +249,7 @@ function drawS() {
                 var superkerpar = new SuperK(X, Y);
                 superkArr.push(superkerpar);
                 superkArrtiv.push(superkerpar);
+                }
             }
             timeEx = 0;
         }
@@ -250,21 +258,20 @@ function drawS() {
     }
     var exanak_e = exanak_f();
 
-
+    // function draw
 
     for (var i in grassArr) {
-            if (exanak == "garun") {
-        grassArr[i].bazmanalg();
-            }
-            else if (exanak == "dzmer") {
-        grassArr[i].bazmanaldz();
-            } else {
-        grassArr[i].bazmanal();
-            }
-        //grassArr[i].bazmanal();
+        if (exanak == "garun") {
+            grassArr[i].bazmanalg();
+        }
+        else if (exanak == "dzmer") {
+            grassArr[i].bazmanaldz();
+        } else {
+            grassArr[i].bazmanal();
+        }
     }
     for (var i in superkArr) {
-        if (exanak == "garun") {      
+        if (exanak == "garun") {
             superkArr[i].utelgarun();
         } else if (exanak == "amar") {
             superkArr[i].utelamar();
@@ -274,10 +281,8 @@ function drawS() {
         }
     }
     for (var i in xotakerArr) {
-        //    xotakerArr[i].bazmanal();
-        //     xotakerArr[i].utel();
-        //      xotakerArr[i].mahanal();
         if (exanak == "garun") {
+
             xotakerArr[i].bazmanal_2();
             xotakerArr[i].utel();
             xotakerArr[i].mahanal();
@@ -294,12 +299,10 @@ function drawS() {
     }
 
     for (var i in gishatichArr) {
-        // gishatichArr[i].utel_2();
-        // gishatichArr[i].bazmanal();
-        // gishatichArr[i].mahanal();
+
         if (exanak == "garun") {
             gishatichArr[i].utel_2();
-            gishatichArr[i].bazmanal(); 
+            gishatichArr[i].bazmanal();
             gishatichArr[i].mahanal();
         }
         else {
@@ -307,8 +310,8 @@ function drawS() {
             gishatichArr[i].bazmanal();
             gishatichArr[i].mahanal();
         }
-        
-        
+
+
     }
 
     for (var i in amenakerArr) {
@@ -317,7 +320,7 @@ function drawS() {
         amenakerArr[i].bazmanal();
         if (exanak == "amar") {
             if (timeEx == 9) {
-            amenakerArr[i].mahanalamar();
+                amenakerArr[i].mahanalamar();
             }
         }
         else {
@@ -325,7 +328,7 @@ function drawS() {
         }
 
 
-     }
+    }
     for (var i in kerparsArr) {
         if (exanak == "dzmer") {
             kerparsArr[i].bazmanaldzmer();
@@ -336,10 +339,10 @@ function drawS() {
         kerparsArr[i].sharjvel();
 
     }
-    if (grassArr.length == 0) {
+    if (grassArr.length == 0 || (xotakerArr.length == 0 && gishatichArr.length == 0)) {
         io.sockets.emit('verj');
         clearInterval(intervalId);
-    }
+    }   
 
     if (grassArr.length != 0) {
         io.sockets.emit('matrix', matrix, exanak);
@@ -359,3 +362,14 @@ function drawS() {
     }
     file();
 }
+
+// function debugMatrix() {
+//     var count = 0;
+//     for (var y in matrix) {
+//         for (var x in matrix[y]) {
+//             if (matrix[y][x] == 1)
+//                 count++;
+//         }
+//     }
+//     console.log("Matirx: " + count, "Arr: " + grassArr.length);
+// }

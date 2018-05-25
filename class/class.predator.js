@@ -67,7 +67,6 @@ module.exports = class Gishatich extends LivingCreature {
                         }
                     }
                     this.mahxot =0;
-                     console.log("bazmacav gishatich");
                 }
             }
         }

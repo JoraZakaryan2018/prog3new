@@ -85,13 +85,12 @@ module.exports = class Xotaker extends LivingCreature {
                     xotakerArrtiv.push(norXotaker1);
                     matrix[norVandak1[1]][norVandak1[0]] = r + 2;
 
-                    console.log(norXotaker1);
+                   
                     for (var i in grassArr) {
                         if (norVandak1[1] == grassArr[i].y && norVandak1[0] == grassArr[i].x) {
                             grassArr.splice(i, 1);
                         }
                     }
-                    console.log("bazmacav");
                     this.mahxot =0;
                 }
             }
@@ -124,7 +123,7 @@ module.exports = class Xotaker extends LivingCreature {
             if (xotakerArr[i].energy <= 0) {
                 matrix[this.y][this.x] = 0;
                 xotakerArr.splice(i, 1);
-                console.log(this.energy);
+               
             }
         }
     }

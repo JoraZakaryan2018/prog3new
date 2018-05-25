@@ -53,21 +53,7 @@ module.exports = class SuperK extends LivingCreature {
         this.stanalNorKordinatner();
         return super.yntrelVandak(ch);
     }
-    // cnvel(){
-    //     for(var i =0;i<=5;i++){
-    //         var random = Math.floor(Math.random() * grassArr.length);
-        
-    //             var Y = grassArr[random].y;
-    //             var X = grassArr[random].x;
-        
-    //             matrix[grassArr[random].y][grassArr[random].x] = 0;
-    //             grassArr.splice(random, 1);
-    
-    //             var superkerpar = new SuperK(Y, X);
-    //             superkArr.push(superkerpar);
-    //             superkArrtiv.push(superkerpar);
-    //     }   
-    // }
+   
     utelgarun() {
         this.stanalNorKordinatner();
         var norVandak3 = this.randy(this.yntrelVandak(2));
